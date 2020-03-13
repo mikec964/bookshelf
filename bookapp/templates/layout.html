@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<!-- layout.html -->
+
+<html>
+<head>
+    {% if title %}
+        <title>Flask Stub - {{ title }}</title>
+    {% else %}
+        <title>Flask Stub</title>
+    {% endif %}
+</head>
+<body>
+    {% block content %}{% endblock %}
+</body>
+</html>
