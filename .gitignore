@@ -1,3 +1,6 @@
+# macos files
+.DS_Store
+
 # key (password) files
 keys.json
 keys.yaml
