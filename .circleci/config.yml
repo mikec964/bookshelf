@@ -6,7 +6,7 @@ jobs:
     steps:
       - checkout
       - run: 
-        - command: |
+          command: |
             python -m venv venv
             source venv/bin/activate
             pip install -r requirements.txt
