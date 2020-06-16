@@ -39,7 +39,7 @@ jobs:
           name: Run tests
           command: |
             source venv/bin/activate
-            pytest
+            pytest > test.log
       - store_artifacts:
           path: test-results
           destination: tr1
