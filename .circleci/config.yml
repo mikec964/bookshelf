@@ -6,7 +6,7 @@ jobs:
       - image: circleci/python:3.7-stretch-browsers
     steps:
       - checkout
-      - run: mkdir test-results
+      - run: mkdir test-reports
       - restore_cache:
           key: deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}
           
@@ -39,8 +39,8 @@ jobs:
           name: Run tests
           command: |
             source venv/bin/activate
-            pytest > test-results/pytest-results.txt
+            pytest > test-reports/pytest-reports.txt
       - store_artifacts:
-          path: test-results
+          path: test-reports
           destination: selenium
 
