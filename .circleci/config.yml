@@ -10,6 +10,7 @@ jobs:
       - run:
           command: |
             python3 -m venv book_env
+            pip install --upgrade pip
             pip install -r requirements.txt
       - store_test_results:
           path: test-results
