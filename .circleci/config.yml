@@ -3,13 +3,34 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: circleci/python:3.6.4
+      - image: circleci/python:3.7-stretch-browsers
     steps:
       - checkout
+      - run: mkdir test-results
       - run:
+          name: Install dependencies
           command: |
             python3 -m venv venv
             source venv/bin/activate
             pip install -r requirements.txt
+      - run:
+          name: Download Selenium
+          command: |
+            curl -O http://selenium-release.storage.googleapis.com/3.5/selenium-server-standalone-3.5.3.jar
+      - run:
+          name: Start Selenium
+          command: |
+            java -jar selenium-server-standalone-3.5.3.jar -log test-reports/selenium.log
+          background: true
+      - run:
+          name: Launch Flask
+          command: python bookapp/app.py
+          background: true 
+      - run:
+          name: Run tests
+          command: pytest
+      - store_artifacts:
+          path: test-results
+          destination: tr1
       - store_test_results:
           path: test-results
