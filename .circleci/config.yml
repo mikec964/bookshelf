@@ -2,15 +2,14 @@ version: 2.1
 
 jobs:
   build:
-    working_directory: ~/circleci-demo-python-flask
     docker:
       - image: circleci/python:3.6.4
     steps:
       - checkout
       - run:
           command: |
-            python3 -m venv book_env
-            source book_env/bin/activate
+            python3 -m venv venv
+            source venv/bin/activate
             pip install -r requirements.txt
       - store_test_results:
           path: test-results
