@@ -40,8 +40,6 @@ jobs:
           command: |
             source venv/bin/activate
             pytest > test-results/pytest-results.txt
-      - store_artifacts:
-          path: test-results
-          destination: selenium
       - store_test_results:
           path: test-results
+          destination: selenium
