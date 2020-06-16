@@ -24,11 +24,15 @@ jobs:
           background: true
       - run:
           name: Launch Flask
-          command: python bookapp/app.py
+          command: |
+            source venv/bin/activate
+            python bookapp/app.py
           background: true 
       - run:
           name: Run tests
-          command: pytest
+          command: |
+            source venv/bin/activate
+            pytest
       - store_artifacts:
           path: test-results
           destination: tr1
