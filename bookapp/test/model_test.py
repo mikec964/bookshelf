@@ -1,13 +1,11 @@
 from .context import bookapp
 import pytest
-from bookapp import db
-from bookapp.config import Config
+from bookapp import app, db
 from bookapp.models import Book 
 
 
-def test_load_keys():
-    assert Config.SECRET_KEY != ''
-    assert Config.SQLALCHEMY_DATABASE_URI != ''
+def test_config_db():
+    assert app.config['SQLALCHEMY_DATABASE_URI'] != ''
 
 def test_add_books():
     book_3 = Book(title="Beasts & Barbarians",
