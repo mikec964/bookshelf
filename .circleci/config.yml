@@ -33,7 +33,7 @@ jobs:
           name: Launch Flask
           command: |
             source venv/bin/activate
-            python bookapp/app.py
+            python app.py
           background: true 
       - run:
           name: Run tests
