@@ -1,0 +1,6 @@
+# Be sure keys.yaml is in .gitignore
+# Create and maintain keys-example.yaml with keys but no values
+SECRET_KEY: ""
+DATABASE_URI: "sqlite:///file.db"
+EMAIL_USER: "mike@example.com"
+EMAIL_PASS: ""
