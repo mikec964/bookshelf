@@ -8,6 +8,7 @@ def test_config_db():
     assert app.config['SQLALCHEMY_DATABASE_URI'] != ''
 
 def test_add_books():
+    db.create_all()
     book_3 = Book(title="Beasts & Barbarians",
                 description="Swords and sandals fantasy setting for Savage Worlds",
                 isbn='test-9999')
