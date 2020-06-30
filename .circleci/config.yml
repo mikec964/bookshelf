@@ -9,11 +9,11 @@ jobs:
       - run: mkdir test-reports
       - restore_cache:
           key: deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}
-          
+          # deps1-master-3984FA
       - run:
           name: Install dependencies
           command: |
-            python -m venv venv
+            python3 -m venv venv
             source venv/bin/activate
             pip install -r requirements.txt
       - save_cache:
@@ -33,7 +33,7 @@ jobs:
           name: Launch Flask
           command: |
             source venv/bin/activate
-            python bookapp/app.py
+            python app.py
           background: true 
       - run:
           name: Run tests
@@ -43,4 +43,3 @@ jobs:
       - store_artifacts:
           path: test-reports
           destination: selenium
-
