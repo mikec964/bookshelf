@@ -2,6 +2,7 @@
 flask2020.pem
 bookshelf.db
 *.jar
+flask.pem
 
 # macos files
 .DS_Store
