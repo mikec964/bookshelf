@@ -1,0 +1,16 @@
+# file: /etc/systemd/system/gunicorn3.service (sudo)
+# cd /etc/systemd/system
+# sudo systemctl daemon-reload
+# sudo service gunicorn3 start
+# sudo service gunicorn3 status  # should have 3 PIDs
+# sudo service gunicorn3 restart  # if changed
+
+[Unit]
+Description=Gunicorn.service
+After=network.target
+
+[Service]
+User=ubuntu
+Group=www-data
+WorkingDirectory=/home/ubuntu/flaskapp
+ExecStart=/usr/bin/gunicorn3 --workers3 --bind unix:flaskapp.sock -m 007 app:app
