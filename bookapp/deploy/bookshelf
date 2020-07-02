@@ -1,0 +1,24 @@
+# file: /etc/nginx/sites-enabled/bookshelf
+# set up nginx as a service
+# `sudo service nginx restart`
+# `service nginx status`  # 2 tasks, master & worker
+
+server {
+	# listen 8080;
+	listen 443 ssl;
+
+	ssl on;
+	ssl_certificate /etc/ssl/certs/nginx-self-signed.crt;
+	ssl_certificate /etc/ssl/private/nginx-self-signed.key;
+
+	server_name 3.23.210.172;
+
+	location / {
+		# proxy_pass http://127.0.0.1:8000;
+		proxy_pass http://unix:home/ubuntu/bookshelf/bookshelf.sock;
+	}
+}
+
+# get ssl cert with:
+# sudo apt-get install openssl
+# sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/nginx-self-signed.key -out /etc/ssl/certs/nginx-self-signed.crt
