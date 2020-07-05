@@ -1,8 +1,8 @@
 # file: /etc/systemd/system/gunicorn3.service (sudo)
 # set up gunicorn3 service
 # `sudo systemctl daemon-reload`
-# `sudo service gunicorn3 restart`
-# `service gunicorn3 status`  # should have 4 tasks
+# `sudo systemctl start gunicorn3`
+# `systemctl status gunicorn3`  # should have 4 tasks & creates <file>.sock
 
 [Unit]
 Description=Gunicorn.service

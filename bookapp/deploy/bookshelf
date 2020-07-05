@@ -1,20 +1,29 @@
 # file: /etc/nginx/sites-enabled/bookshelf
 # set up nginx as a service
-# `sudo service nginx restart`
-# `service nginx status`  # 2 tasks, master & worker
+# `sudo systemctl restart nginx`
+# `systemctl status nginx`  # 2 tasks, master & worker
+
+# server {
+# 	# drew's server (elastic ip, ssl)
+# 	listen 443 ssl;
+# 
+# 	ssl on;
+# 	ssl_certificate /etc/ssl/certs/nginx-self-signed.crt;
+# 	ssl_certificate /etc/ssl/private/nginx-self-signed.key;
+# 
+# 	server_name 3.23.210.172;  # drew's server (elastic ip, ssl)
+# 
+# 	location / {
+# 		proxy_pass http://unix:home/ubuntu/bookshelf/bookshelf.sock;
+# 	}
+# }
 
 server {
-	# listen 8080;
-	listen 443 ssl;
-
-	ssl on;
-	ssl_certificate /etc/ssl/certs/nginx-self-signed.crt;
-	ssl_certificate /etc/ssl/private/nginx-self-signed.key;
-
-	server_name 3.23.210.172;
+	# mike's server (elastic ip)
+	listen 80;
+	server_name 34.199.156.127;  # mike's server (elastic ip)
 
 	location / {
-		# proxy_pass http://127.0.0.1:8000;
 		proxy_pass http://unix:home/ubuntu/bookshelf/bookshelf.sock;
 	}
 }
