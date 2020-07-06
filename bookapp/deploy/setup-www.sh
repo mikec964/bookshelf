@@ -1,4 +1,4 @@
-# run with `sudo ./setup.sh`
+# run with `sudo ./setup-www.sh`
 
 apt-get install nginx
 cp bookshelf /etc/nginx/sites-enabled/

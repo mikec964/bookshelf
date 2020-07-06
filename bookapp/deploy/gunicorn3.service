@@ -12,4 +12,4 @@ After=network.target
 User=ubuntu
 Group=www-data
 WorkingDirectory=/home/ubuntu/bookshelf
-ExecStart=/usr/bin/gunicorn3 --workers 3 --bind unix:bookshelf.sock -m 007 app:app
+ExecStart=/usr/bin/gunicorn3 --preload --access-logfile - --workers 3 --bind unix:bookshelf.sock -m 007 app:app
