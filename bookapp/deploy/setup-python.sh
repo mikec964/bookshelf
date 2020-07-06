@@ -5,5 +5,5 @@ sudo apt-install python3
 # python3 -m venv venv
 sudo apt-install python3-pip
 # source venv/bin/activate
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 # fails building wheel for: Flask-Bcrypt, PyYML, SQLAlchemy
