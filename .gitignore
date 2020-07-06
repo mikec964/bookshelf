@@ -3,6 +3,9 @@ flask2020.pem
 bookshelf.db
 *.jar
 
+# macos files
+.DS_Store
+
 # key (password) files
 keys.json
 keys.yaml
