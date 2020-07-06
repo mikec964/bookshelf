@@ -3,5 +3,10 @@
 
 {% block content %}
     <h1>Flask Stub Home Page</h1>
-    {{ greeting }}
+    <p>{{ greeting }}, v2!</p>
+    {% for book in books %}
+      <h2>{{book.title}}</h2>
+      {{book.description}}
+      <em>{{book.isbn}}</em>
+    {% endfor %}
 {% endblock content %}

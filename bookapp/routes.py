@@ -4,7 +4,9 @@ from bookapp import app
 
 @app.route('/')
 def hello_world():
-    return render_template('home.html', title= "Home Page", greeting='Bienvenido')
+    books = Book.query.all()
+    return render_template('home.html', title= "Home Page", 
+        greeting='Bienvenido', books=books)
 
 @app.route('/test')
 def test_out():
