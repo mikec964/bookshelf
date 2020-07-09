@@ -1,11 +1,11 @@
-from flask import Flask, render_template, url_for, redirect
+from flask import Flask, render_template, url_for, redirect, request
 from bookapp.models import Book 
 from bookapp import app, db
 from bookapp.forms import PostBook
 
 
 @app.route('/')
-def hello_world():
+def home():
     books = Book.query.all()
     return render_template('home.html', title= "Home Page", 
         greeting='Bienvenido', books=books)
@@ -19,7 +19,7 @@ def create_book():
         book = Book(title=form.title.data, description=form.description.data, isbn=form.isbn.data)
         db.session.add(book)
         db.session.commit()
-        return redirect(url_for('hello_world'))
+        return redirect(url_for('home'))
     return render_template('create_book.html', title= "Add Book", 
         legend="New Book", form=form)
 
@@ -30,6 +30,25 @@ def show_book(book_id):
     book = Book.query.get_or_404(book_id)
     return render_template('book.html', title=book.title,
         book=book)
+
+
+@app.route('/update/<int:book_id>', methods=['GET', 'POST'])
+def update_book(book_id):
+    '''Update book'''
+    book = Book.query.get_or_404(book_id)
+    form = PostBook()
+    if form.validate_on_submit():
+        book.title = form.title.data
+        book.description = form.description.data
+        book.isbn = form.isbn.data
+        db.session.commit()
+        return redirect(url_for('home'))
+    elif request.method == 'GET':
+        form.title.data = book.title
+        form.description.data = book.description
+        form.isbn.data = book.isbn
+    return render_template('create_book.html', title= "Update Book", 
+        legend="Book", form=form)
 
 
 @app.route('/test')
