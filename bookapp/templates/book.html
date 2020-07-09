@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+<!-- book.html -->
+
+{% block content %}
+    <h1 id="title">{{book.title}}</h1>
+    <p><a href="/add">Add a book</a></p>
+    <div id="description">
+    	{{book.description}}
+    </div>
+    <p id="isbn"><em>{{book.isbn}}</em></p>
+{% endblock content %}

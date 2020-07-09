@@ -24,3 +24,10 @@ def test_add_book(web_setup):
     assert len(driver.find_elements_by_id("description")) == 1
     assert len(driver.find_elements_by_id("isbn")) == 1
     assert len(driver.find_elements_by_id("submit")) == 1
+
+def test_view_book(web_setup):
+    driver.get("http://localhost:5000/book/1")
+    assert len(driver.find_elements_by_id("title")) == 1
+    assert len(driver.find_elements_by_id("description")) == 1
+    assert len(driver.find_elements_by_id("isbn")) == 1
+

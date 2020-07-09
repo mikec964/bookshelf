@@ -6,8 +6,11 @@
     <p><a href="/add">Add a book</a></p>
     <p>{{ greeting }}, v2!</p>
     {% for book in books %}
-      <h2>{{book.title}}</h2>
-      {{book.description}}
-      <em>{{book.isbn}}</em>
+      <h2 id="title">{{book.title}}</h2>
+      <div id="description">
+	      {{book.description}}
+	  </div>
+	  <p><a href="/book/{{book.id}}">View this book</a></p>
+      <p id="isbn"><em>{{book.isbn}}</em></p>
     {% endfor %}
 {% endblock content %}

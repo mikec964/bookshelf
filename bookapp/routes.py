@@ -13,6 +13,7 @@ def hello_world():
 
 @app.route('/add', methods=['GET', 'POST'])
 def add_book():
+    '''Create new book'''
     form = PostBook()
     if form.validate_on_submit():
         book = Book(title=form.title.data, description=form.description.data, isbn=form.isbn.data)
@@ -23,11 +24,19 @@ def add_book():
         legend="New Book", form=form)
 
 
+@app.route('/book/<int:book_id>')
+def show_book(book_id):
+    '''Read book description'''
+    book = Book.query.get_or_404(book_id)
+    return render_template('book.html', title=book.title,
+        book=book)
+
+
 @app.route('/test')
 def test_out():
-    my_book = Book.query.first()
-    return render_template('home.html', title= my_book.title,
-        greeting='Out=' + my_book.isbn)
+    book = Book.query.first()
+    return render_template('book.html', title=book.title,
+        book=book)
 
 # if __name__ == '__main__':
 #     app.debug = True
