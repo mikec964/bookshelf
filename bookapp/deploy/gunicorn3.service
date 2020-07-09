@@ -1,0 +1,15 @@
+# file: /etc/systemd/system/gunicorn3.service (sudo)
+# set up gunicorn3 service
+# `sudo systemctl daemon-reload`
+# `sudo systemctl start gunicorn3`
+# `systemctl status gunicorn3`  # should have 4 tasks & creates <file>.sock
+
+[Unit]
+Description=Gunicorn.service
+After=network.target
+
+[Service]
+User=ubuntu
+Group=www-data
+WorkingDirectory=/home/ubuntu/bookshelf
+ExecStart=/usr/bin/gunicorn3 --preload --access-logfile - --workers 3 --bind unix:bookshelf.sock -m 007 app:app
