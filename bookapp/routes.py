@@ -12,7 +12,7 @@ def hello_world():
 
 
 @app.route('/add', methods=['GET', 'POST'])
-def add_book():
+def create_book():
     '''Create new book'''
     form = PostBook()
     if form.validate_on_submit():
@@ -20,7 +20,7 @@ def add_book():
         db.session.add(book)
         db.session.commit()
         return redirect(url_for('hello_world'))
-    return render_template('add_book.html', title= "Add Book", 
+    return render_template('create_book.html', title= "Add Book", 
         legend="New Book", form=form)
 
 
